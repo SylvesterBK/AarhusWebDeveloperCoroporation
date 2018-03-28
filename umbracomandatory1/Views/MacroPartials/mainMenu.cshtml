@@ -1,0 +1,112 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+@using System.Linq
+
+
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the CSS class "current".
+*@
+
+
+
+
+@{  var selection = Model.Content.Site().Children.Where(x => x.IsVisible()).ToArray(); 
+    var root = Model.Content.Site();
+    
+    IQueryable projectDropdown = 
+    Model.Content.AncestorOrSelf(1)
+    .Children
+    .Where(x => x.DocumentTypeAlias == "projectsOverview")
+    .First()
+    .Children
+    .Where("Visible")
+    .OrderBy("Name");
+    
+     IQueryable articleDropdown = 
+    Model.Content.AncestorOrSelf(1)
+    .Children
+    .Where(x => x.DocumentTypeAlias == "articlesOverview")
+    .First()
+    .Children
+    .Where("Visible")
+    .OrderBy("Name");
+    
+    }
+    
+
+
+    
+@if (selection.Length > 0){
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Web Developer Portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="@root.Url">@root.Name</a></li>
+       
+       @foreach (var item in selection){
+       
+      
+        
+            if(item.Name == "Project overview"){
+                    <li class="nav-item-dropdown @(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="@item.Url">
+          @item.Name
+        </a>
+                        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            
+             @foreach (IPublishedContent page in projectDropdown)
+                    {
+                    
+                   var isProtected = umbraco.library.IsProtected(page.Id, page.Path);
+                   var loginAccess = umbraco.library.IsProtected(page.Id, page.Path) && umbraco.library.HasAccess(page.Id, page.Path);
+                    if(!isProtected||loginAccess){
+                <a class="dropdown-item" href="@page.Url">@page.Name</a>
+                }}
+                </div>      
+                </li>
+            }else if(item.Name == "Article overview"){
+            <li class="nav-item-dropdown @(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="@item.Url">
+          @item.Name
+        </a>
+                        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            
+             @foreach (IPublishedContent page in articleDropdown)
+                    {
+                <a class="dropdown-item" href="@page.Url">@page.Name</a>
+                }
+                </div>      
+                </li>
+            
+            }else{
+             var isProtected = umbraco.library.IsProtected(item.Id, item.Path);
+                   var loginAccess = umbraco.library.IsProtected(item.Id, item.Path) && umbraco.library.HasAccess(item.Id, item.Path);
+                    if(!isProtected||loginAccess){
+            
+            <li class="nav-item">
+        <a class="nav-link" href="@item.Url">@item.Name</a>
+      </li>
+      }}
+        }
+     </ul>
+    </div>
+    </nav>
+  
+   }
+ 
+
+
+
+
+
+
+
