@@ -40,7 +40,9 @@ namespace umbracomandatory1.Controllers
         //        stmp.Host = "stmp.gmail.com";
         //        stmp.Port = 587;
         //        stmp.Credentials = new System.Net.NetworkCredential(")
-           
+
         //        stmp.Send(message);
+        //comment for git
+
     }
 }
