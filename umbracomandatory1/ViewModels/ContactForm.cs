@@ -16,7 +16,8 @@ namespace umbracomandatory1.ViewModels
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter your Email")]
         [Display(Name = "Email")]
-        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+/@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "Please enter a valid email address")]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", 
+            ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter your subject")]
         public string Subject { get; set; }

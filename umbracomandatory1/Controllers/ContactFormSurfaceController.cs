@@ -29,7 +29,7 @@ namespace umbracomandatory1.Controllers
             else
             {
                 MailMessage message = new MailMessage();
-                message.To.Add("eaasykj@students.eaaa.dk");
+                message.To.Add("sylle1234@gmail.dk");
                 message.Subject = model.Subject;
                 message.From = new MailAddress(model.Email, model.Name);
                 message.Body = model.Message;
@@ -42,9 +42,20 @@ namespace umbracomandatory1.Controllers
                 comment.SetValue("messageContent", model.Message);
                 Services.ContentService.Save(comment);
 
+                using (SmtpClient smtp = new SmtpClient())
+                {
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.EnableSsl = true;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.Credentials = new System.Net.NetworkCredential("sylle1234@gmail.com", "password");
+                    smtp.EnableSsl = true;
 
+                    smtp.Send(message);
+                }
                 //Services.ContentService.SaveAndPublishWithStatus(comment);
-                
+
 
 
                 TempData["success"] = true;
@@ -53,4 +64,3 @@ namespace umbracomandatory1.Controllers
         }
         }
     }
-}

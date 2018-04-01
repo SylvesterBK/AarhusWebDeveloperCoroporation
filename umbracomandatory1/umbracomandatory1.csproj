@@ -305,7 +305,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Views\ContactFormSurface\ContactForm.cshtml" />
+    <Content Include="Views\MacroPartials\ContactForm.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Media.cshtml" />
@@ -396,6 +396,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\ContactFormSurface\" />
     <Folder Include="Views\HandleFormSubmit\" />
   </ItemGroup>
   <PropertyGroup>
