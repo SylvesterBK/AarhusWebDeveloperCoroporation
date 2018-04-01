@@ -9,6 +9,7 @@ namespace umbracomandatory1.ViewModels
 {
     public class ContactForm
     {
+        //commentthirdbranch
         [Required(ErrorMessage = "Please enter your name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter your Email")]
