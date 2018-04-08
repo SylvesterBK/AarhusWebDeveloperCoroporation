@@ -1,7 +1,11 @@
-umbraco login:
+umbraco backend login:
 admin@admin.dk
 adminpassword
 
 active login:
 gabrielactive
 gabrielactive
+
+guestlogin:
+kennethguest
+kennethguest

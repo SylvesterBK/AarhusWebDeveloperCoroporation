@@ -37,7 +37,7 @@ if (!Members.GetCurrentLoginStatus().IsLoggedIn){
         <br/>
         @Html.LabelFor(m => loginModel.Password, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-6">
-        @Html.TextBoxFor(m => loginModel.Password, new { @class = "form-control", placeholder = "Password" })
+        @Html.PasswordFor(m => loginModel.Password, new { @class = "form-control", placeholder = "Password" })
                 @Html.ValidationMessageFor(m => loginModel.Password)
 </div>
         <!--@Html.LabelFor(m => loginModel.Username)-->
