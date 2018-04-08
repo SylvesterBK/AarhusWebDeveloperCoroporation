@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	var selection = CurrentPage.Site().Children.Where("DocumentTypeAlias == \"projectsOverview\"").First().Children.OrderBy("CreateDate desc").Take(5);
+//	var completed = selection.GetPropertyValue("projectStatus").ToString;
+//.Where("projectStatus == @0", 11)
+}
+<h3>Completed projects:</h3>
+<ul>
+	@foreach (var item in selection.Where("Visible"))
+	{
+	    
+		<li><a href="@item.Url">@item.Name</a></li>
+	
+	}
+</ul>

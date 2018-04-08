@@ -25,20 +25,34 @@
 if (!Members.GetCurrentLoginStatus().IsLoggedIn){
     <fieldset>
         <legend>Login</legend>
-        
+        <div class="container">
+    <div class="form-group">
         @Html.ValidationSummary("loginModel", true)
+        
+         @Html.LabelFor(m => loginModel.Username, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-6">
+        @Html.TextBoxFor(m => loginModel.Username, new { @class = "form-control", placeholder = "Username" })
+                @Html.ValidationMessageFor(m => loginModel.Username)
+           </div>     
+        <br/>
+        @Html.LabelFor(m => loginModel.Password, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-6">
+        @Html.TextBoxFor(m => loginModel.Password, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => loginModel.Password)
+</div>
+        <!--@Html.LabelFor(m => loginModel.Username)-->
+        <!--@Html.TextBoxFor(m => loginModel.Username)-->
+        <!--@Html.ValidationMessageFor(m => loginModel.Username)-->
+        <!--<br />-->
 
-        @Html.LabelFor(m => loginModel.Username)
-        @Html.TextBoxFor(m => loginModel.Username)
-        @Html.ValidationMessageFor(m => loginModel.Username)
-        <br />
-
-        @Html.LabelFor(m => loginModel.Password)
-        @Html.PasswordFor(m => loginModel.Password)
-        @Html.ValidationMessageFor(m => loginModel.Password)
+        <!--@Html.LabelFor(m => loginModel.Password)-->
+        <!--@Html.PasswordFor(m => loginModel.Password)-->
+        <!--@Html.ValidationMessageFor(m => loginModel.Password)-->
         <br />
 
         <button>Login</button>
+        </div>
+        </div>
     </fieldset>  
     }else{
     <p>you are already logged in as @Members.GetCurrentLoginStatus().Name</p>

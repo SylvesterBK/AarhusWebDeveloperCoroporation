@@ -1,0 +1,7 @@
+umbraco login:
+admin@admin.dk
+adminpassword
+
+active login:
+gabrielactive
+gabrielactive
